@@ -1,0 +1,21 @@
+# 编译产物 —— 仓库只存源码
+ko/
+obj/
+
+# kbuild 中间文件
+*.o
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.order
+.*.cmd
+Module.symvers
+modules.order
+modules.builtin
+
+# 设备树编译产物
+*.dtb
+
+# IDE / 工具
+compile_commands.json
