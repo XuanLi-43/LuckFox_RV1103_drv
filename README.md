@@ -9,6 +9,7 @@
 | 模块 | 说明 | 硬性地址 |
 |---|---|---|
 | `drv/MD0240_LCD/` | MD0240 屏（ST7789V 240×320 SPI）framebuffer 驱动 | 详见模块内 README.md |
+| `drv/GPIO/` | GPIO 引脚控制字符设备驱动（方向/上下拉/输出电平） | 暂无模块内 README（说明见下文"目录结构"） |
 
 ## 目录结构
 
@@ -21,6 +22,10 @@ rv1103_drv/
 │   │   ├── Makefile              ← 模块构建脚本（所有模块共用同一套规则）
 │   │   ├── 模块源码 *.c / *.h
 │   │   └── *-pico-plus.dts       ← 需要的设备树（如涉及 GPIO/SPI 等外围时需要）
+│   ├── GPIO/
+│   │   ├── Makefile              ← 模块构建脚本（所有模块共用同一套规则）
+│   │   ├── gpio.c                ← GPIO 控制驱动源码（暂无独立 README，说明见各目录注释）
+│   │   └── rv1103g-luckfox-pico-plus.dts  ← 设备树（GPIO3_C6 及 pinctrl 状态）
 │   └── <新模块>/                 ← 以后按同样结构添加（每个模块自含 README + Makefile）
 └── docs/
     └── 设备树编译与烧录指南.md   ← dts → boot.img → 烧录 → 验证（跨模块通用）
