@@ -100,39 +100,44 @@
 };
 
 /* GPIO 节点 */
-gpio_dev {
+/ {
+	gpio_dev {
 	compatible = "luckfox-pico,gpio_dev";
 
-	gpios = <&gpio3 RK_PC6 GPIO_ACTIVE_HIGH>;
+	gpios = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
 
 	/* 与 echo 命令一致 */
-	gpio-names = "GPIO3_C6";
+	gpio-names = "GPIO1_C7";
 
 	/* 使用 "硬件名-模式" */
 	pinctrl-names = "default",
-			"GPIO3_C6-up",
-			"GPIO3_C6-down",
-			"GPIO3_C6-none";
+			"GPIO1_C7-up",
+			"GPIO1_C7-down",
+			"GPIO1_C7-none";
 
 	/* 默认状态 */
-	pinctrl-0 = <&gdev_c6>;
+	pinctrl-0 = <&gdev_c7>;
 
 	/* 对应上拉/下拉/无状态 */
-	pinctrl-1 = <&gdev_c6_up>;
-	pinctrl-2 = <&gdev_c6_down>;
-	pinctrl-3 = <&gdev_c6>;
+	pinctrl-1 = <&gdev_c7_up>;
+	pinctrl-2 = <&gdev_c7_down>;
+	pinctrl-3 = <&gdev_c7>;
 
 	status = "okay";
+	};
 };
 
 &pinctrl {
-	gdev_c6: gdev-c6 {
-		rockchip,pins = <3 RK_PC6 0 &pcfg_pull_none>;
-	};
-	gdev_c6_up: gdev-c6-up {
-		rockchip,pins = <3 RK_PC6 0 &pcfg_pull_up>;
-	};
-	gdev_c6_down: gdev-c6-down {
-		rockchip,pins = <3 RK_PC6 0 &pcfg_pull_down>;
+	/* 第一级是 function 节点（与 rv1106-pinctrl.dtsi 的两级结构一致） */
+	gdev {
+		gdev_c7: gdev-c7 {
+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+		gdev_c7_up: gdev-c7-up {
+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
+		};
+		gdev_c7_down: gdev-c7-down {
+			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_down>;
+		};
 	};
 };
